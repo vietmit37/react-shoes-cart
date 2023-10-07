@@ -158,7 +158,8 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/tabindex-no-positive": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "react/button-has-type": "off"
   },
   "overrides": [
     {
