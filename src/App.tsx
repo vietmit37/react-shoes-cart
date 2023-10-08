@@ -28,13 +28,13 @@ const routesConfig = [
     layout: MainLayout,
     element: Dashboard,
     auth: AuthRoute,
-    role: [ROLE.ADMIN, ROLE.OPERATOR, ROLE.OWNER],
+    roles: [ROLE.ADMIN, ROLE.OPERATOR, ROLE.OWNER],
   },
   {
     path: PAGE_URL.ABOUT,
     layout: MainLayout,
     element: About,
-    role: [ROLE.ALL],
+    roles: [ROLE.ALL],
   },
   {
     path: PAGE_URL.LOGIN,
@@ -46,7 +46,7 @@ const routesConfig = [
     layout: MainLayout,
     element: User,
     auth: AuthRoute,
-    role: [ROLE.ADMIN],
+    roles: [ROLE.ADMIN],
   },
   {
     path: PAGE_URL.ERROR_403,
@@ -73,7 +73,7 @@ export default function App() {
                 element={(
                   <AuthComponent>
                     <Layout>
-                      <RoleRoute roles={route.role || []}>
+                      <RoleRoute roles={route.roles || []}>
                         <Component />
                       </RoleRoute>
                     </Layout>
