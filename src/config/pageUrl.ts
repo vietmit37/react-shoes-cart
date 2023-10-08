@@ -4,4 +4,5 @@ export const PAGE_URL = {
   REGISTER: '/register',
   ABOUT: '/about',
   USER: '/user',
+  ERROR_403: '/403',
 };

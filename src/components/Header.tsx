@@ -7,6 +7,8 @@ function Header() {
   const navigate = useNavigate();
 
   function onLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     navigate(PAGE_URL.LOGIN);
   }
 

@@ -2,7 +2,12 @@ import Button from '@components/Button';
 import ImageElement from '@components/ImageElement';
 import Typography from '@components/Typography';
 
+// helpers
+import { canAction } from '../helpers/canAction';
+
 function Dashboard() {
+  const canAddToCart = canAction('view', 'button-add-to-cart');
+
   return (
     <>
       <div className="card">
@@ -31,7 +36,11 @@ function Dashboard() {
 
             <div className="shopItem_bottom">
               <Typography text="$108.97" className="shopItem_price" />
-              <Button buttonText="ADD TO CART" className="shopItem_button" />
+
+              {canAddToCart && (
+                <Button buttonText="ADD TO CART" className="shopItem_button" />
+              )}
+
             </div>
           </div>
         </div>
