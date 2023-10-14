@@ -1,29 +1,25 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import { PAGE_URL } from '../config';
-
-type IResponseToken = {
-  data: {
-    token: string;
-  }
-}
+import { axiosInstance, IConfig } from '../services/axiosInstace';
 
 function Login() {
   const navigate = useNavigate();
 
   async function onLogin() {
-    // localStorage.setItem('token', 'tony');
-    // localStorage.setItem('role', 'admin');
-    const res: IResponseToken = await axios('https://tony-auth-express-cmylpcdza-nhattruong1811-gmailcom.vercel.app/api/user/login', {
+    const options: IConfig = {
+      showSpinner: true,
       method: 'POST',
       data: {
-        email: 'tony@gmail.com',
-        password: '123456',
+        data: {
+          email: 'tony@gmail.com',
+          password: '123456',
+        },
       },
-    });
-
-    localStorage.setItem('token', res.data.token);
+    };
+    const res = await axiosInstance('/user/login', options);
+    localStorage.setItem('access_token', res.data.data.access_token);
+    localStorage.setItem('refresh_token', res.data.data.refresh_token);
     navigate(PAGE_URL.ROOT);
   }
 
