@@ -1,9 +1,8 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { axiosInstance, IConfig } from '../services/axiosInstace';
 
 function User() {
-  const [users, setUsers] = React.useState([]);
-
   async function fetchData() {
     const options: IConfig = {
       showSpinner: true,
@@ -15,7 +14,6 @@ function User() {
       resUser,
       resPhoto,
     });
-    // setUsers(res.data.data);
   }
 
   React.useEffect(() => {

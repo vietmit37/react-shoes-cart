@@ -21,8 +21,6 @@ const config: IConfig = {
 
 export const axiosInstance = axios.create(config);
 
-const cancel: any = null;
-
 export const initRequest = (store: any) => {
   let requestCount = 0;
 

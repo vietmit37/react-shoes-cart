@@ -61,6 +61,11 @@ const routesConfig = [
 ];
 
 export default function App() {
+  console.log('ENV: ', {
+    backendUrl: import.meta.env.VITE_BACK_URL,
+    frontendUrl: import.meta.env.VITE_FRONT_URL,
+  });
+
   return (
     <div className="mainContent">
       <React.Suspense fallback={<div>Loading...</div>}>

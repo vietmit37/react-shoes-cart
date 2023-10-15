@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 // types
@@ -6,8 +5,6 @@ import { IState } from '../models/app';
 
 function Loading() {
   const isSpinner = useSelector((state: IState) => state.app.isSpinner);
-
-  console.log('isSpinner: ', isSpinner);
 
   if (!isSpinner) return null;
 

@@ -1,12 +1,12 @@
-import React, { PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PAGE_URL } from '../config';
+import { PropsWithChildren } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { PAGE_URL } from '../config';
 
 type Props = {
   roles?: string[];
 }
 
-function RoleRoute({ children, roles = [] }: PropsWithChildren<Props>) {
+function RoleRoute({ children }: PropsWithChildren<Props>) {
   // const role = localStorage.getItem('role');
   // const navigate = useNavigate();
 

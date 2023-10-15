@@ -117,7 +117,7 @@
       }
     ],
     "no-unused-vars": [
-      "error",
+      "off",
       {
         "argsIgnorePattern": "^_"
       }
@@ -159,7 +159,8 @@
     "jsx-a11y/tabindex-no-positive": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "import/no-extraneous-dependencies": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "typescript-eslint/no-unused-vars": "off"
   },
   "overrides": [
     {

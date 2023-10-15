@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Header from '@components/Header';
-import { PAGE_URL } from '../../config';
+// import { PAGE_URL } from '../../config';
 import { axiosInstance } from '../../services/axiosInstace';
 
 type IProps = {
@@ -9,7 +9,7 @@ type IProps = {
 
 function MainLayout({ children }: PropsWithChildren<IProps>) {
   const token = localStorage.getItem('access_token');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!token) return;

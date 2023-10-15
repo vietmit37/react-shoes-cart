@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:staging": "tsc && vite build --mode staging",
     "mylint": "echo '\\n\\\\033[0;36;1m      ESLINT checking...' && eslint src/**/*.{ts,tsx} && echo '\\n\\\\033[0;32;1m      ESLINT Done!' && echo '\\n\\\\033[0;36;1m      TYPESCRIPT checking...\\n' && tsc --noEmit && echo '\\n\\\\033[0;32;1m      TYPESCRIPT Done!'",
     "mylint:fix": "echo '\\n\\\\033[0;36;1m      ESLINT checking...' && eslint src/**/*.{ts,tsx} --fix && echo '\\n\\\\033[0;32;1m      ESLINT Done!' && echo '\\n\\\\033[0;36;1m      TYPESCRIPT checking...\\n' && tsc --noEmit && echo '\\n\\\\033[0;32;1m      TYPESCRIPT Done!'",
     "preview": "vite preview"
