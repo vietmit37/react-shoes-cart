@@ -7,6 +7,11 @@ import App from './App';
 // store
 import { store } from './store';
 
+// init store
+import { initRequest } from './services/axiosInstace';
+
+initRequest(store);
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Provider store={store}>

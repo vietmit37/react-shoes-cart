@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 // configs
+import Loading from '@components/Loading';
+import ModalError from '@components/ModalError';
 import { PAGE_URL, ROLE } from './config';
 import User from './pages/User';
 
@@ -86,6 +88,9 @@ export default function App() {
         </Routes>
       </React.Suspense>
 
+      <Loading />
+
+      <ModalError />
     </div>
   );
 }

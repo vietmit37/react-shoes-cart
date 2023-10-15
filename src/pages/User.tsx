@@ -4,21 +4,35 @@ import { axiosInstance, IConfig } from '../services/axiosInstace';
 function User() {
   const [users, setUsers] = React.useState([]);
 
-  React.useEffect(() => {
-    async function fetchUsers() {
-      const options: IConfig = {
-        showSpinner: true,
-      };
-      const res = await axiosInstance('/user', options);
-      setUsers(res.data.data);
-    }
+  async function fetchData() {
+    const options: IConfig = {
+      showSpinner: true,
+    };
+    const resUser = await axiosInstance('/user', options);
+    const resPhoto = await axiosInstance('/photo', options);
 
-    fetchUsers();
+    console.log('fetchData: ', {
+      resUser,
+      resPhoto,
+    });
+    // setUsers(res.data.data);
+  }
+
+  React.useEffect(() => {
+    fetchData();
   }, []);
 
-  console.log('users: ', users);
+  function handleFetch() {
+    fetchData();
+  }
+
   return (
-    <div>User</div>
+    <div>
+      User
+
+      <button type="button" onClick={handleFetch}>fetch cancel</button>
+
+    </div>
   );
 }
 

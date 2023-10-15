@@ -15,3 +15,25 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+/*
+app: {
+  isSpinner: false
+}
+
+todo: {
+  todos: [],
+}
+
+state: {
+  app: {
+    isSpinner: false
+  },
+  todo: {
+    todos: [],
+  }
+}
+
+const isSpinner = state.app.isSpinner;
+
+*/

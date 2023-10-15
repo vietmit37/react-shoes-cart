@@ -2,11 +2,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface IAppState {
-  isSpinner: boolean
+export interface IAppState {
+  isSpinner: boolean,
+  modalError: {
+    isOpen: boolean,
+    content: string
+  }
 }
 
-const initialState = { isSpinner: false } as IAppState;
+const initialState: IAppState = {
+  isSpinner: false,
+  modalError: {
+    isOpen: false,
+    content: '',
+  },
+};
 
 const appSlice = createSlice({
   name: 'app',
@@ -15,8 +25,12 @@ const appSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.isSpinner = action.payload;
     },
+    showError(state, action: PayloadAction<{ isOpen: boolean, content: string }>) {
+      state.modalError.isOpen = action.payload.isOpen;
+      state.modalError.content = action.payload.content;
+    },
   },
 });
 
-export const { setLoading } = appSlice.actions;
+export const { setLoading, showError } = appSlice.actions;
 export default appSlice.reducer;

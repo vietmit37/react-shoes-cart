@@ -16,8 +16,7 @@ function MainLayout({ children }: PropsWithChildren<IProps>) {
 
     async function checkUser() {
       const res = await axiosInstance.post('/auth');
-      const data = res.data.data.user;
-      console.log('data: ', data);
+      console.log('data: ', res);
     }
     checkUser();
   }, [token]);
