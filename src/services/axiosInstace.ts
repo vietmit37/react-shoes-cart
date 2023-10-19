@@ -4,13 +4,13 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { setLoading, showError } from '../redux/app.slice';
 
 export type IConfig = AxiosRequestConfig & {
-  showSpinner?: boolean,
+  showSpinner?: boolean;
 };
 
 export type IResponse = AxiosResponse & {
   config: {
-    showSpinner?: boolean,
-  }
+    showSpinner?: boolean;
+  };
 };
 
 const config: IConfig = {
@@ -20,6 +20,9 @@ const config: IConfig = {
 };
 
 export const axiosInstance = axios.create(config);
+
+const { CancelToken } = axios;
+let cancel: any = null;
 
 export const initRequest = (store: any) => {
   let requestCount = 0;
@@ -34,21 +37,12 @@ export const initRequest = (store: any) => {
   // Add a request interceptor
   axiosInstance.interceptors.request.use(
     (config: any) => {
-      // // cancel request
-      // if (cancel && config.url !== '/auth') {
-      //   cancel();
-      // }
-      // // if (config.url !== '/auth' || config.url !== '/user/refresh-token') {
-
-      // // }
-
-      // config.cancelToken = new axios.CancelToken((c) => {
-      //   cancel = c;
-      // });
-
-      // if (config.url === '/auth' || config.url === '/user/refresh-token') {
-      //   delete config?.cancelToken;
-      // }
+      if (cancel) {
+        cancel(); // cancel request
+      }
+      config.cancelToken = new CancelToken((c) => {
+        cancel = c;
+      });
 
       if (config?.showSpinner) {
         // show spinner
@@ -69,24 +63,18 @@ export const initRequest = (store: any) => {
   // Add a response interceptor
   axiosInstance.interceptors.response.use(
     (response: IResponse) => {
-      if (response.config.showSpinner) {
-        // hide spinner
-        countLoading();
-      }
+      countLoading();
       return response;
     },
     async (error) => {
-      if (error?.config?.showSpinner) {
-        // hide spinner
-        countLoading();
-      }
-
       // handle timeout
       if (error.code === 'ECONNABORTED') {
-        store.dispatch(showError({
-          isOpen: true,
-          content: '504 Gateway Timeout',
-        }));
+        store.dispatch(
+          showError({
+            isOpen: true,
+            content: '504 Gateway Timeout',
+          }),
+        );
       }
       // token expired
       if (error.response?.status === 401) {
@@ -108,13 +96,13 @@ export const initRequest = (store: any) => {
       }
 
       // handle other error
-      switch (error.response.status) {
+      switch (error.response?.status) {
         case 400: {
-        // code logic
+          // code logic
           break;
         }
         case 500: {
-        // code logic
+          // code logic
           break;
         }
         default:
